@@ -1,0 +1,29 @@
+{
+    "name": "aigletter/laravel-ticket",
+    "description": "Larave ticket system",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "aigletter",
+            "email": "aigletter@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Aigletter\\Ticket\\": "src",
+            "Aigletter\\Ticket\\Database\\Seeders\\": "database/seeders",
+            "Test\\Hello\\Database\\Seeds\\": "database/seeds",
+            "Hello\\World\\": "aaa"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aigletter\\Ticket\\LaravelTicketServiceProvider"
+            ]
+        }
+    }
+}
