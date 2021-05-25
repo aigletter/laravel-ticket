@@ -20,6 +20,7 @@ class CreateTicketsTable extends Migration
             $table->bigInteger('status_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->string('subject');
+            $table->text('content');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('ticket_categories');

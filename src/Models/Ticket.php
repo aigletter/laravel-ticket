@@ -4,11 +4,14 @@
 namespace Aigletter\Ticket\Models;
 
 
+use Aigletter\LaravelAttachment\AttachmentTrait;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
+    use AttachmentTrait;
+
     public function category()
     {
         return $this->belongsTo(TicketCategory::class);

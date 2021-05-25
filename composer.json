@@ -10,13 +10,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "aigletter/laravel-attachment": "*"
+    },
     "autoload": {
         "psr-4": {
             "Aigletter\\Ticket\\": "src",
-            "Aigletter\\Ticket\\Database\\Seeders\\": "database/seeders",
-            "Test\\Hello\\Database\\Seeds\\": "database/seeds",
-            "Hello\\World\\": "aaa"
+            "Aigletter\\Ticket\\Database\\Seeders\\": "database/seeders"
         }
     },
     "extra": {
