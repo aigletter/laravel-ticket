@@ -11,6 +11,7 @@ use Aigletter\Ticket\Models\TicketMessage;
 use Aigletter\Ticket\Models\TicketPriority;
 use Aigletter\Ticket\Models\TicketStatus;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,12 @@ class LaravelTicket
             $user = $user->id;
         }
 
-        $query = Ticket::query()->with('messages')->where('user_id', $user);
+        $query = Ticket::query()
+            ->with('messages')
+            ->withCount(['messages' => function (Builder $builder) use ($user) {
+                $builder->where('user_id', '!=', $user)
+                    ->where('status', TicketMessage::STATUS_UNREAD);
+            }])->where('user_id', $user);
         if ($filters) {
             foreach ($filters as $key => $value) {
                 $query->where($key, $value);
@@ -101,7 +107,7 @@ class LaravelTicket
         ?\SplFileInfo $file = null
     ) {
         if (is_int($ticket)) {
-            $ticket = Ticket::query()->where('id', $ticket)->first();
+            $ticket = $this->getTicket($ticket);
             if (!$ticket) {
                 throw new \Exception('Ticket not found');
             }
@@ -127,6 +133,20 @@ class LaravelTicket
 
             throw $exception;
         }
+    }
+
+    public function changeMessageStatus($message, $status)
+    {
+        if (is_numeric($message)) {
+            $message = $this->getTicket($message);
+            if (!$message) {
+                throw new \Exception('Ticket not found');
+            }
+        }
+
+        $message->status = $status;
+
+        return $message->save();
     }
 
     public function getCategories()

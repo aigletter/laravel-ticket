@@ -26,6 +26,7 @@ class CreateTicketsTable extends Migration
             $table->foreign('category_id')->references('id')->on('ticket_categories');
             $table->foreign('priority_id')->references('id')->on('ticket_priorities');
             $table->foreign('status_id')->references('id')->on('ticket_statuses');
+            // TODO added user table to config
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

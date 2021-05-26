@@ -11,6 +11,10 @@ class TicketMessage extends Model
 {
     use AttachmentTrait;
 
+    public const STATUS_UNREAD = 0;
+
+    public const STATUS_READ = 1;
+
     protected $fillable = [
         'user_id',
         'ticket_id',
