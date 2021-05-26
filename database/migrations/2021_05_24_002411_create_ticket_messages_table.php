@@ -18,7 +18,7 @@ class CreateTicketMessagesTable extends Migration
             $table->bigInteger('ticket_id');
             $table->bigInteger('user_id');
             $table->text('message');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
