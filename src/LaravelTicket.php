@@ -90,6 +90,8 @@ class LaravelTicket
             DB::commit();
         } catch (\Throwable $exception) {
             DB::rollBack();
+
+            throw $exception;
         }
     }
 
@@ -122,6 +124,8 @@ class LaravelTicket
             DB::commit();
         } catch (\Throwable $exception) {
             DB::rollBack();
+
+            throw $exception;
         }
     }
 
